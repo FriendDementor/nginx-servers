@@ -19,6 +19,8 @@ RUN rm -R /etc/nginx/*
 
 ## Copy files to container
 ADD nginx /etc/nginx/
+RUN mkdir /etc/nginx/sites-available
+RUN mkdir /etc/nginx/sites-enabled
 ADD nsc /nsc
 RUN chmod +x /nsc/nsc.py
 ENV PATH="/nsc/bin:${PATH}"

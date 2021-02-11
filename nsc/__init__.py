@@ -1,1 +1,1 @@
-from .nsc import sites
+from .sites import sites
