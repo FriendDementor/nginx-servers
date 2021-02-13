@@ -27,6 +27,8 @@ ENV PATH="/nsc/bin:${PATH}"
 RUN mkdir /nsc/bin
 RUN ln -s /nsc/nsc.py /nsc/bin/nsc
 COPY entrypoint.sh /etc/entrypoint.sh
-RUN chmod +x /etc/entrypoint.sh
 
+RUN mkdir /html
+
+RUN chmod +x /etc/entrypoint.sh
 ENTRYPOINT /etc/entrypoint.sh

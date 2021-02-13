@@ -2,6 +2,7 @@ import argparse
 import jinja2
 
 from sites import sites_function # pylint: disable=import-error
+from add import add_static # pylint: disable=import-error
 
 # from .add import add
 # from .delete import delete
@@ -12,6 +13,9 @@ from sites import sites_function # pylint: disable=import-error
 def consume_and_print(function):
     return lambda args: print(function(args))
 
+def extract_domain_attribute(function):
+    return lambda args: print(function(args.domain))
+
 # create the top-level parser
 nsc_parser = argparse.ArgumentParser()
 subparsers = nsc_parser.add_subparsers()
@@ -21,9 +25,9 @@ parser_list = subparsers.add_parser('list')
 parser_list.set_defaults(func=consume_and_print(sites_function))
 
 # # create the parser for the "add" command
-# parser_add = subparsers.add_parser('add')
-# parser_add.add_argument('domain')
-# parser_add.set_defaults(func=add)
+parser_add = subparsers.add_parser('add')
+parser_add.add_argument('domain')
+parser_add.set_defaults(func=extract_domain_attribute(add_static))
 
 # # create the parser for the "ssl" command
 # parser_ssl = subparsers.add_parser('ssl')

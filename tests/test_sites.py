@@ -12,15 +12,22 @@ BASE_PATH = "/etc/nginx/"
 SITES_AVAILABLE_PATH = BASE_PATH + "sites-available/"
 SITES_ENABLED_PATH = BASE_PATH + "sites-enabled/"
 
+def clean_files():
+
+    files = glob.glob(SITES_AVAILABLE_PATH + '*')
+    for f in files:
+        os.remove(f)
+    files = glob.glob(SITES_ENABLED_PATH + '*')
+    for f in files:
+        os.remove(f)
+
 class TestSites(unittest.TestCase):
 
+    def setUp(self):
+        clean_files()
+
     def tearDown(self):
-        files = glob.glob(SITES_AVAILABLE_PATH + '*')
-        for f in files:
-            os.remove(f)
-        files = glob.glob(SITES_ENABLED_PATH + '*')
-        for f in files:
-            os.remove(f)
+        clean_files()
 
     def test_empty(self):
         expected = FIRST_TITLE + "\n\n" + SECOND_TITLE + "\n\n"
