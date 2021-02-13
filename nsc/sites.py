@@ -11,7 +11,7 @@ import os
 #
 # sites enabled
 # example.com
-def sites_function(args):
+def sites_function(args=[]):
     result_lines = []
     result_lines.append("sites available:")
     available_files = os.listdir("/etc/nginx/sites-available/")

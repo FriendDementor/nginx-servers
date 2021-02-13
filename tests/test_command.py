@@ -14,5 +14,7 @@ class TestShellCommand(unittest.TestCase):
     def test_nsc_list(self):
         result = subprocess.check_output(["nsc", "list"])
         result = str(result)
-        print(result)
+        self.assertEqual(result.find("usage:"), -1)
+        self.assertNotEqual(result.find("sites enabled:"), -1)
+        self.assertNotEqual(result.find("sites available:"), -1)
 
