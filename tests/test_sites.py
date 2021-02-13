@@ -2,7 +2,7 @@ import unittest
 import os
 import glob
 
-from nsc import sites_function
+from nsc import sites_function # pylint: disable=import-error
 
 FIRST_TITLE = "sites available:"
 SECOND_TITLE = "sites enabled:"

@@ -3,7 +3,7 @@
 import os
 import sys
 
-from parser import nsc_parser
+from parser import nsc_parser # pylint: disable=no-name-in-module
 
 # parse the args and call whatever function was selected
 if __name__ == '__main__':

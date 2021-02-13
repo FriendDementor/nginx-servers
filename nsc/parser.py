@@ -1,7 +1,7 @@
 import argparse
 import jinja2
 
-from sites import sites_function
+from sites import sites_function # pylint: disable=import-error
 
 # from .add import add
 # from .delete import delete
