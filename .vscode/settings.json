@@ -11,5 +11,8 @@
     "python.testing.unittestEnabled": true,
     "[python]": {
         "editor.codeLens": false
-    }
+    },
+    "python.autoComplete.extraPaths":[
+        "nsc/"
+    ]
 }

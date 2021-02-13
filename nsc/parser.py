@@ -1,22 +1,24 @@
-#!/usr/bin/python3
-
 import argparse
 import jinja2
 
-from .sites import sites
+from sites import sites_function
+
 # from .add import add
 # from .delete import delete
 # from .ssl import ssl
 # from .enable import enable
 # from .disable import disable
 
+def consume_and_print(function):
+    return lambda args: print(function(args))
+
 # create the top-level parser
-parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers()
+nsc_parser = argparse.ArgumentParser()
+subparsers = nsc_parser.add_subparsers()
 
 # create the parser for the "sites" command
 parser_list = subparsers.add_parser('list')
-parser_list.set_defaults(func=sites)
+parser_list.set_defaults(func=consume_and_print(sites_function))
 
 # # create the parser for the "add" command
 # parser_add = subparsers.add_parser('add')
@@ -38,10 +40,3 @@ parser_list.set_defaults(func=sites)
 # parser_disable.add_argument('domain')
 # parser_disable.set_defaults(func=disable)
 
-# parse the args and call whatever function was selected
-if __name__ == '__main__':
-    args = parser.parse_args()
-    if len(vars(args)) == 0:
-        parser.print_help()
-    else:
-        args.func(args)
