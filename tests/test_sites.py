@@ -54,3 +54,9 @@ class TestSites(unittest.TestCase):
         expected = "sites available:\nexample.com\n\nsites enabled:\ntest.com\n\n"
         self.assertEqual(sites_function(), expected)
 
+    def test_same_available_enable(self):
+        with open(SITES_AVAILABLE_PATH + 'example.com.conf', 'w') as _: pass
+        with open(SITES_ENABLED_PATH + 'example.com.conf', 'w') as _: pass
+        expected = "sites available:\nexample.com\n\nsites enabled:\nexample.com\n\n"
+        self.assertEqual(sites_function(), expected)
+
