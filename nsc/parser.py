@@ -3,6 +3,7 @@ import jinja2
 
 from sites import sites_function # pylint: disable=import-error
 from add import add_static # pylint: disable=import-error
+from delete import delete_static # pylint: disable=import-error
 
 # from .add import add
 # from .delete import delete
@@ -28,6 +29,11 @@ parser_list.set_defaults(func=consume_and_print(sites_function))
 parser_add = subparsers.add_parser('add')
 parser_add.add_argument('domain')
 parser_add.set_defaults(func=extract_domain_attribute(add_static))
+
+# # create the parser for the "delete" command
+parser_delete = subparsers.add_parser('delete')
+parser_delete.add_argument('domain')
+parser_delete.set_defaults(func=extract_domain_attribute(delete_static))
 
 # # create the parser for the "ssl" command
 # parser_ssl = subparsers.add_parser('ssl')
