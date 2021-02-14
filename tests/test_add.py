@@ -1,6 +1,5 @@
 import unittest
 import os
-import glob
 import shutil
 
 from nsc import add_static # pylint: disable=import-error
