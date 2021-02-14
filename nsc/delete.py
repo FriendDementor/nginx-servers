@@ -1,7 +1,7 @@
 import os
 import shutil
 
-# this is only one that can create files
+# this is only one that can delete files
 # in the /html folder and /etc/nginx/sites-available/
 
 # delete
@@ -10,8 +10,6 @@ import shutil
 # example:
 # $ nginx delete example.com
 
-# this function set the config and files to make
-# a new page available to work
 # for each execution of this function will delete
 # two files: /html/domain/index.html
 # and: /etc/nginx/sites-available/domain.conf

@@ -4,6 +4,8 @@ import jinja2
 from sites import sites_function # pylint: disable=import-error
 from add import add_static # pylint: disable=import-error
 from delete import delete_static # pylint: disable=import-error
+from enable import enable # pylint: disable=import-error
+from disable import disable # pylint: disable=import-error
 
 # from .add import add
 # from .delete import delete
@@ -41,12 +43,12 @@ parser_delete.set_defaults(func=extract_domain_attribute(delete_static))
 # parser_ssl.set_defaults(func=ssl)
 
 # # create the parser for the "enable" command
-# parser_enable = subparsers.add_parser('enable')
-# parser_enable.add_argument('domain')
-# parser_enable.set_defaults(func=enable)
+parser_enable = subparsers.add_parser('enable')
+parser_enable.add_argument('domain')
+parser_enable.set_defaults(func=extract_domain_attribute(enable))
 
 # # create the parser for the "disable" command
-# parser_disable = subparsers.add_parser('disable')
-# parser_disable.add_argument('domain')
-# parser_disable.set_defaults(func=disable)
+parser_disable = subparsers.add_parser('disable')
+parser_disable.add_argument('domain')
+parser_disable.set_defaults(func=extract_domain_attribute(disable))
 
