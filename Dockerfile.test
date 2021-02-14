@@ -4,5 +4,5 @@ ADD tests /tests
 
 WORKDIR /
 
-ENTRYPOINT python3 -m unittest discover -s tests
+ENTRYPOINT python3 -m unittest discover -s tests/
 #ENTRYPOINT sh
