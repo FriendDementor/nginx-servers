@@ -16,7 +16,7 @@ def clean_files():
             for d in dirs:
                 shutil.rmtree(os.path.join(root, d))
 
-class TestAdd(unittest.TestCase):
+class TestDelete(unittest.TestCase):
 
     def tearDown(self):
         clean_files()

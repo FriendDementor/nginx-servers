@@ -3,3 +3,5 @@
 from .sites import sites_function
 from .add import add_static
 from .delete import delete_static
+from .enable import enable
+from .disable import disable
