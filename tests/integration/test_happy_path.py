@@ -20,6 +20,8 @@ def clean_files():
             for d in dirs:
                 shutil.rmtree(os.path.join(root, d))
 
+    execute("nginx -s reload")
+
 class TestFunctionsHappyPath(unittest.TestCase):
 
     def tearDown(self):

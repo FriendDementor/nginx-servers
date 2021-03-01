@@ -1,6 +1,7 @@
 import unittest
 import os
 import glob
+import subprocess
 
 from nsc import sites_function # pylint: disable=import-error
 
@@ -12,6 +13,10 @@ BASE_PATH = "/etc/nginx/"
 SITES_AVAILABLE_PATH = BASE_PATH + "sites-available/"
 SITES_ENABLED_PATH = BASE_PATH + "sites-enabled/"
 
+def execute(command):
+    result = subprocess.check_output(command.split())
+    return result.decode("utf-8")
+
 def clean_files():
 
     files = glob.glob(SITES_AVAILABLE_PATH + '*')
@@ -20,6 +25,8 @@ def clean_files():
     files = glob.glob(SITES_ENABLED_PATH + '*')
     for f in files:
         os.remove(f)
+
+    execute("nginx -s reload")
 
 class TestSites(unittest.TestCase):
 
