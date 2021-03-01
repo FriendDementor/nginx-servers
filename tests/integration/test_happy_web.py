@@ -42,6 +42,7 @@ class TestFunctionsHappyPath(unittest.TestCase):
 
         # After simply add a templated domain, curl should still show 404
         result = execute("nsc add example.com")
+        time.sleep(0.1) # wait a bit time for give time to nginx server to update
         self.assertEqual(result, "OK\n")
         result = subprocess.run(['curl', '-v', 'http://example.com/'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         result = result.stdout.decode("utf-8")
@@ -49,7 +50,7 @@ class TestFunctionsHappyPath(unittest.TestCase):
 
         # Now when enable the domain, curl should works fine
         result = execute("nsc enable example.com")
-        time.sleep(0.2) # wait a bit time for give time to nginx server to update
+        time.sleep(0.1) # wait a bit time for give time to nginx server to update
         self.assertEqual(result, "OK\n")
         result = subprocess.run(['curl', '-v', 'http://example.com/'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         result = result.stdout.decode("utf-8")
