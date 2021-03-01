@@ -7,6 +7,8 @@ from nsc import enable # pylint: disable=import-error
 
 def clean_files():
     paths = []
+    paths.append('/html/')
+    paths.append('/etc/nginx/sites-available/')
     paths.append('/etc/nginx/sites-enabled/')
     for path in paths:
         for root, dirs, files in os.walk(path):
