@@ -1,4 +1,9 @@
 import os
+import subprocess
+
+def execute(command):
+    result = subprocess.check_output(command.split())
+    return result.decode("utf-8")
 
 # this is only one that can create files
 # in the folder /etc/nginx/sites-enabled/
@@ -15,6 +20,7 @@ def enable(domain):
     bOk = bOk and os.path.exists(available_path)
     if bOk:
         os.symlink(available_path, enabled_path)
+        execute("nginx -s reload")
         return "OK"
     return "ERROR" # this error will show when the file exists
 
