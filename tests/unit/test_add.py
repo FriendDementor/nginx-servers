@@ -52,6 +52,42 @@ class TestAdd(unittest.TestCase):
         self.assertTrue(os.path.exists(conf))
         self.assertTrue(os.path.exists(html))
 
+    def test_already_exists(self):
+        conf = "/etc/nginx/sites-available/a.conf"
+        html = "/html/a/index.html"
+        self.assertFalse(os.path.exists(conf))
+        self.assertFalse(os.path.exists(html))
+        self.assertEqual(add_static("a"),"OK")
+        self.assertEqual(add_static("a"),"ERROR")
+        self.assertTrue(os.path.exists(conf))
+        self.assertTrue(os.path.exists(html))
+
+    def test_config_already_exists(self):
+        conf = "/etc/nginx/sites-available/a.conf"
+        html = "/html/a/index.html"
+        self.assertFalse(os.path.exists(conf))
+        self.assertFalse(os.path.exists(html))
+
+        os.mknod(conf)
+
+        self.assertEqual(add_static("a"),"ERROR")
+        self.assertTrue(os.path.exists(conf))
+        self.assertFalse(os.path.exists(html))
+
+
+    def test_html_already_exists(self):
+        conf = "/etc/nginx/sites-available/a.conf"
+        html = "/html/a/index.html"
+        self.assertFalse(os.path.exists(conf))
+        self.assertFalse(os.path.exists(html))
+
+        os.mkdir("/html/a/")
+        os.mknod("/html/a/index.html")
+
+        self.assertEqual(add_static("a"),"ERROR")
+        self.assertFalse(os.path.exists(conf))
+        self.assertTrue(os.path.exists(html))
+
     def test_two_add(self):
         conf1 = "/etc/nginx/sites-available/example.com.conf"
         html1 = "/html/example.com/index.html"

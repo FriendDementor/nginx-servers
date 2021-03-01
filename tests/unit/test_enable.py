@@ -31,14 +31,14 @@ class TestAdd(unittest.TestCase):
 
         self.assertTrue(os.path.exists(path))
 
-    def test_long_and(self):
+    def test_long_add(self):
         path = "/etc/nginx/sites-enabled/asonetuhasonetuhasonetuh.conf"
         add_static("asonetuhasonetuhasonetuh")
         self.assertFalse(os.path.exists(path))
         enable("asonetuhasonetuhasonetuh")
         self.assertTrue(os.path.exists(path))
 
-    def test_short_and(self):
+    def test_short_add(self):
         path = "/etc/nginx/sites-enabled/a.conf"
         add_static("a")
         self.assertFalse(os.path.exists(path))
