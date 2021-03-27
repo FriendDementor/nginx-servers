@@ -1,0 +1,11 @@
+FROM production
+
+ADD tests /tests
+
+WORKDIR /
+
+RUN echo "python3 -m unittest discover -s tests/" > /usr/bin/pytest
+RUN chmod +x /usr/bin/pytest
+
+ENTRYPOINT nginx && pytest
+#ENTRYPOINT nginx && sh

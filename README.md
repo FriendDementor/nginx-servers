@@ -1,4 +1,9 @@
-# HERE
-this repo should be splitted into two repositories
-1) nsc - nginx simple command line - or ncli?
-2) nginx tutorial from scratch (a repo of examples or complete tutorial)
+# NSC Nginx Simple Client
+
+A short list of commands to have a simple server of nginx
+
+## Run tests
+```
+docker build . -t production && docker build -f Dockerfile.test . -t test && docker run test
+```
+
