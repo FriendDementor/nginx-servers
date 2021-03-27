@@ -1,5 +1,10 @@
 import os
 import shutil
+import subprocess
+
+def execute(command):
+    result = subprocess.check_output(command.split())
+    return result.decode("utf-8")
 
 # this is only one that can delete files
 # in the /html folder and /etc/nginx/sites-enabled/
@@ -17,5 +22,6 @@ def disable(domain):
     bOk = os.path.exists(conf_path)
     if bOk:
         os.unlink(conf_path)
+        execute("nginx -s reload")
         return "OK"
     return "ERROR" # this error will show when the file exists
